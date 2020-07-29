@@ -17,13 +17,13 @@ const AnecdoteList = (props) => {
         dispatch(voteAction(anecdote.id))
     }
 
-    const notifTimer = (anecdote) => {
-        setNotif(true)
-        dispatch(voteNotification(anecdote.content))
-        setTimeout(() => {
-            setNotif(false)
-        }, 3000)
-    }
+    // const notifTimer = (anecdote) => {
+    //     setNotif(true)
+    //     dispatch(voteNotification(anecdote.content))
+    //     setTimeout(() => {
+    //         setNotif(false)
+    //     }, 3000)
+    // }
 
     return (
         <>
