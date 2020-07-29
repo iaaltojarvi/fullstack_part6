@@ -13,11 +13,11 @@ const NewAnecdote = (props) => {
         event.preventDefault()
         dispatch(newAnecdote(anecdote))
         setAnecdote('')
-        // setNotif(true)
-        // dispatch(anecdoteNotification(anecdote))
-        // setTimeout(() => {
-        //     setNotif(false)
-        // }, 3000)
+        setNotif(true)
+        dispatch(anecdoteNotification(anecdote))
+        setTimeout(() => {
+            setNotif(false)
+        }, 3000)
     }
 
     return (

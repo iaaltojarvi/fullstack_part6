@@ -12,9 +12,7 @@ export const voteNotification = (text) => {
 export const anecdoteNotification = (text) => {
     return {
         type: 'NOTIFICATION_NEW_ANECDOTE',
-        data: {
-            content: text.content
-        }
+        content: text
     }
 }
 
@@ -23,7 +21,7 @@ const notificationReducer = (state = notification, action) => {
         case 'NOTIFICATION_VOTE':
             return `You voted '${action.content}'`
         case 'NOTIFICATION_NEW_ANECDOTE':
-            return `You added anecdote: ${action.data.content}`
+            return `You added '${action.content}'`
         default:
             return state
     }

@@ -13,17 +13,13 @@ const AnecdoteList = (props) => {
     const dispatch = useDispatch()
 
     const onVote = (anecdote) => {
-        // notifTimer(anecdote)
         dispatch(voteAction(anecdote.id))
+        setNotif(true)
+        dispatch(voteNotification(anecdote.content))
+        setTimeout(() => {
+            setNotif(false)
+        }, 3000)
     }
-
-    // const notifTimer = (anecdote) => {
-    //     setNotif(true)
-    //     dispatch(voteNotification(anecdote.content))
-    //     setTimeout(() => {
-    //         setNotif(false)
-    //     }, 3000)
-    // }
 
     return (
         <>

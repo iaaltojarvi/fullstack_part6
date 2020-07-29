@@ -53,7 +53,7 @@ const anecdoteReducer = (state = initialState, action) => {
       console.log(newList)
       return newList
     default:
-      return initialState
+      return state
   }
 }
 
