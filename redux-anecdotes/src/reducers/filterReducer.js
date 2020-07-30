@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 export const search = (payload) => {
-    console.log('payload', payload)
     return {
         type: 'FILTER',
         payload

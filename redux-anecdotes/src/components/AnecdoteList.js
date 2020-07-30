@@ -18,9 +18,9 @@ const AnecdoteList = (props) => {
 
     const searchAnecdotes = (event) => {
         event.preventDefault()
-        const searchVal = event.target.searchFor.value
+        const searchVal = event.target.searching.value
         dispatch(search(searchVal))
-        event.target.searchFor.value = ''
+        event.target.searching.value = ''
     }
 
     const filtering = firstAnecdotes.filter((anecdote) => anecdote && anecdote.content.toLowerCase().includes(searchState.payload))
@@ -38,7 +38,7 @@ const AnecdoteList = (props) => {
             <br></br>
             <form onSubmit={searchAnecdotes}>
                 <button type="submit">search</button>
-                <input name="searchFor" />
+                <input name="searching" />
             </form>
             {anecdotes && anecdotes.map(anecdote =>
                 <div key={anecdote.id && anecdote.id}>
