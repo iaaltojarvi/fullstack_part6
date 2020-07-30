@@ -1,33 +1,36 @@
-const getId = () => {
-  return Math.floor(Math.random() * 10000)
-}
+import anecdoteService from '../services/anecdotes'
 
 export const newAnecdote = (anecdote) => {
-  console.log('in reducer', anecdote)
-  return {
-    type: 'NEW_ANECDOTE',
-    data: {
-      content: anecdote,
-      votes: 0
-    }
+  return async dispatch => {
+    const newAne = await anecdoteService.createNew(anecdote)
+    dispatch({
+      type: 'NEW_ANECDOTE',
+      data: newAne
+    })
   }
 }
 
-export const voteAction = (id) => {
-  return {
-    type: 'VOTE',
-    data: { id }
+export const voteAction = (id, content, votes) => {
+  return async dispatch => {
+    const voted = await anecdoteService.update(id, content, votes)
+    dispatch({
+      type: 'VOTE',
+      data: voted
+    })
   }
 }
 
-export const initializeAnecdotes = (anecdotes) => {
-  return {
-    type: 'INIT_ANECDOTES',
-    data: anecdotes
+export const initializeAnecdotes = () => {
+  return async dispatch => {
+    const anecdotes = await anecdoteService.getAll()
+    dispatch({
+      type: 'INIT_ANECDOTES',
+      data: anecdotes
+    })
   }
 }
 
-const anecdoteReducer = (state = [], action, data) => {
+const anecdoteReducer = (state = [], action) => {
   switch (action.type) {
     case 'VOTE':
       const id = action.data.id
@@ -39,7 +42,6 @@ const anecdoteReducer = (state = [], action, data) => {
         return newArr
       }
     case 'NEW_ANECDOTE':
-      console.log('state', state, 'action data', action.data)
       const newList = [...state, action.data]
       return newList
     case 'INIT_ANECDOTES':

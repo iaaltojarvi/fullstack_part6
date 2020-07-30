@@ -12,9 +12,6 @@ const NewAnecdote = (props) => {
 
     const createNew = async (event) => {
         event.preventDefault()
-        console.log('in create', anecdote)
-        const posted = await anecdoteService.createNew(anecdote)
-        console.log('posted', posted)
         dispatch(newAnecdote(anecdote))
         setNotif(true)
         dispatch(anecdoteNotification(anecdote))

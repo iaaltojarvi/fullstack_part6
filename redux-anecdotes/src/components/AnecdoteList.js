@@ -12,8 +12,6 @@ const AnecdoteList = (props) => {
         return b.votes - a.votes
     }))
 
-console.log('anecdotes in list', firstAnecdotes)
-
     const searchState = useSelector(state => state.search)
 
     const searchAnecdotes = (event) => {
@@ -30,7 +28,7 @@ console.log('anecdotes in list', firstAnecdotes)
     const [notif, setNotif] = useState(false)
 
     const onVote = (anecdote) => {
-        dispatch(voteAction(anecdote.id))
+        dispatch(voteAction(anecdote.id, anecdote.content, anecdote.votes))
         setNotif(true)
         dispatch(voteNotification(anecdote.content))
         setTimeout(() => {
