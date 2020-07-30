@@ -1,7 +1,8 @@
-import React, { useState, useSelector } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { newAnecdote } from '../reducers/anecdoteReducer'
 import { anecdoteNotification } from '../reducers/notificationReducer'
+import anecdoteService from '../services/anecdotes'
 import Notification from './Notification';
 
 const NewAnecdote = (props) => {
@@ -9,14 +10,17 @@ const NewAnecdote = (props) => {
     const [notif, setNotif] = useState(false)
     const dispatch = useDispatch()
 
-    const createNew = (event) => {
+    const createNew = async (event) => {
         event.preventDefault()
+        console.log('in create', anecdote)
+        const posted = await anecdoteService.createNew(anecdote)
+        console.log('posted', posted)
         dispatch(newAnecdote(anecdote))
-        setAnecdote('')
         setNotif(true)
         dispatch(anecdoteNotification(anecdote))
         setTimeout(() => {
             setNotif(false)
+            setAnecdote('')
         }, 3000)
     }
 
