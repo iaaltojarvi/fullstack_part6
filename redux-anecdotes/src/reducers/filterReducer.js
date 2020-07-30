@@ -2,22 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 export const search = (payload) => {
+    console.log('payload', payload)
     return {
         type: 'FILTER',
         payload
     }
 }
 
-const initialState = {}
-const filterReducer = (state = initialState, action) => {
-    console.log(action)
-    switch (action.type) {
+const filterReducer = (state = {}, {type, payload}) => {
+    switch (type) {
         case 'FILTER':
-            const value = action.payload.value
-            const filtered = state.anecdotes.filter(anecdote => {
-                return anecdote.content.toLowerCase().includes(value)
-            })
-            return { ...state, anecdotes: filtered }
+            return {...state, payload}
         default:
             return state
     }

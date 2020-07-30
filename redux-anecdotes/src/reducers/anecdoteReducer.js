@@ -50,7 +50,6 @@ const anecdoteReducer = (state = initialState, action) => {
     case 'NEW_ANECDOTE':
       console.log('state', state, 'action data', action.data)
       const newList = [...state, action.data]
-      console.log(newList)
       return newList
     default:
       return state
