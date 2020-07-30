@@ -1,27 +1,24 @@
 const notification = ''
 
-
-export const voteNotification = (text) => {
-    console.log('text', text)
-    return {
-        type: 'NOTIFICATION_VOTE',
-        content: text
-    }
-}
-
-export const anecdoteNotification = (text) => {
-    return {
-        type: 'NOTIFICATION_NEW_ANECDOTE',
-        content: text
+export const setNotification = (notification, time) => {
+    return async dispatch => {
+        dispatch({
+            type: 'NOTIFICATION',
+            data: notification
+        })
+        setTimeout(() => {
+            dispatch({
+                type: 'NOTIFICATION',
+                data: ''
+            })
+        }, time)
     }
 }
 
 const notificationReducer = (state = notification, action) => {
     switch (action.type) {
-        case 'NOTIFICATION_VOTE':
-            return `You voted '${action.content}'`
-        case 'NOTIFICATION_NEW_ANECDOTE':
-            return `You added '${action.content}'`
+        case 'NOTIFICATION':
+            return action.data
         default:
             return state
     }

@@ -1,29 +1,26 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { newAnecdote } from '../reducers/anecdoteReducer'
-import { anecdoteNotification } from '../reducers/notificationReducer'
-import anecdoteService from '../services/anecdotes'
+import { setNotification } from '../reducers/notificationReducer'
 import Notification from './Notification';
 
 const NewAnecdote = (props) => {
     const [anecdote, setAnecdote] = useState('')
-    const [notif, setNotif] = useState(false)
     const dispatch = useDispatch()
+    const notifState = useSelector(state => state.notification)
 
     const createNew = async (event) => {
         event.preventDefault()
         dispatch(newAnecdote(anecdote))
-        setNotif(true)
-        dispatch(anecdoteNotification(anecdote))
+        dispatch(setNotification(`You added '${anecdote}'`, 3500))
         setTimeout(() => {
-            setNotif(false)
             setAnecdote('')
         }, 3000)
     }
 
     return (
         <>
-            {notif && <Notification />}
+            {notifState !== '' && notifState.includes('voted') ? <Notification /> : null}
             <form onSubmit={(event) => createNew(event)}>
                 <h2>create new</h2>
                 <div><input type="text" value={anecdote} onChange={event => setAnecdote(event.target.value)} /></div>
