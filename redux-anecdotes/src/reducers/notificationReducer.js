@@ -1,24 +1,40 @@
 const notification = ''
+var timeoutID
 
 export const setNotification = (notification, time) => {
     return async dispatch => {
-        dispatch({
-            type: 'NOTIFICATION',
-            data: notification
-        })
-        setTimeout(() => {
+        timeoutID = 
             dispatch({
                 type: 'NOTIFICATION',
-                data: ''
+                data: notification,
+
             })
-        }, time)
+        }
     }
-}
+
+
+// const clearNotification = () => {
+//     return async dispatch => {
+//          {
+//             dispatch({
+//                 type: 'CLEAR_NOTIFICATION',
+//                 data: {
+//                     notification: '',
+//                 }
+//             })
+//         })
+//     }
+// }
+
+// clearNotification()
 
 const notificationReducer = (state = notification, action) => {
+    console.log('action in reduc', action)
     switch (action.type) {
         case 'NOTIFICATION':
             return action.data
+        // case 'CLEAR_NOTIFICATION':
+        //     return action.data
         default:
             return state
     }

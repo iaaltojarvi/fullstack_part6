@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, connect } from 'react-redux'
 import { voteAction } from '../reducers/anecdoteReducer'
-import { setNotification } from '../reducers/notificationReducer';
+import { setNotification, clearNotification } from '../reducers/notificationReducer';
 import { search } from '../reducers/filterReducer'
-import Notification from './Notification';
 
 const AnecdoteList = (props) => {
     const dispatch = useDispatch()
 
-    let firstAnecdotes = useSelector(state => state.anecdotes.sort(function (a, b) {
+    let firstAnecdotes = props.anecdotes.sort(function (a, b) {
         return b.votes - a.votes
-    }))
-
-    const notifState = useSelector(state => state.notification)
+    })
 
     const searchState = useSelector(state => state.search)
 
@@ -29,12 +26,11 @@ const AnecdoteList = (props) => {
 
     const onVote = (anecdote) => {
         dispatch(voteAction(anecdote.id, anecdote.content, anecdote.votes))
-        dispatch(setNotification(`You voted '${anecdote.content}'`, 3500))
+        props.setNotification(`You voted '${anecdote.content}'`, 3500)
     }
 
     return (
         <>
-            {notifState !== '' && notifState.includes('added') ? <Notification /> : null}
             <br></br>
             <form onSubmit={searchAnecdotes}>
                 <button type="submit">search</button>
@@ -56,4 +52,17 @@ const AnecdoteList = (props) => {
     )
 }
 
-export default AnecdoteList
+const mapStateToProps = (state) => {
+    return {
+        anecdotes: state.anecdotes,
+        notification: state.notification
+    }
+}
+
+const mapDispatchToProps = {
+    setNotification
+}
+
+const ConnectedAnecdoteList = connect(mapStateToProps, mapDispatchToProps)(AnecdoteList)
+
+export default ConnectedAnecdoteList
