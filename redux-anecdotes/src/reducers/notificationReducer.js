@@ -1,9 +1,7 @@
 let id = Math.floor(Math.random() * 1000);
-let countdown
 
 export const setNotification = (notification) => {
     return async dispatch => {
-        clearTimeout(countdown)
         await dispatch({
             type: 'NOTIFICATION',
             data: {
@@ -12,7 +10,7 @@ export const setNotification = (notification) => {
             }
         })
         setTimeout(() => {
-            dispatch({
+            await dispatch({
                 type: 'CLEAR_NOTIFICATION',
                 data: {
                     notification: '',
