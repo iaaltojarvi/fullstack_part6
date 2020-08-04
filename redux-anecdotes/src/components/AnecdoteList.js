@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import { voteAction } from '../reducers/anecdoteReducer'
-import { setNotification, clearNotification } from '../reducers/notificationReducer';
+import { setNotification } from '../reducers/notificationReducer';
 import { search } from '../reducers/filterReducer'
 
 const AnecdoteList = (props) => {

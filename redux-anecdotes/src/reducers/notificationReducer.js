@@ -1,40 +1,34 @@
-const notification = ''
-var timeoutID
+let id = Math.floor(Math.random() * 1000);
+let countdown
 
-export const setNotification = (notification, time) => {
+export const setNotification = (notification) => {
     return async dispatch => {
-        timeoutID = 
+        clearTimeout(countdown)
+        await dispatch({
+            type: 'NOTIFICATION',
+            data: {
+                notification: notification,
+                id: id
+            }
+        })
+        setTimeout(() => {
             dispatch({
-                type: 'NOTIFICATION',
-                data: notification,
-
+                type: 'CLEAR_NOTIFICATION',
+                data: {
+                    notification: '',
+                    id: id
+                }
             })
-        }
+        }, 5000)
     }
+}
 
-
-// const clearNotification = () => {
-//     return async dispatch => {
-//          {
-//             dispatch({
-//                 type: 'CLEAR_NOTIFICATION',
-//                 data: {
-//                     notification: '',
-//                 }
-//             })
-//         })
-//     }
-// }
-
-// clearNotification()
-
-const notificationReducer = (state = notification, action) => {
-    console.log('action in reduc', action)
+const notificationReducer = (state = [], action) => {
     switch (action.type) {
         case 'NOTIFICATION':
-            return action.data
-        // case 'CLEAR_NOTIFICATION':
-        //     return action.data
+            return [...state, action.data]
+        case 'CLEAR_NOTIFICATION':
+            return state.filter(toast => toast.id !== action.data.id)
         default:
             return state
     }
