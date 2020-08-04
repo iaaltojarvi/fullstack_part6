@@ -39,8 +39,8 @@ const anecdoteReducer = (state = [], action) => {
       let newArr = [...state]
       if (anecdoteToUpdate) {
         newArr[state.indexOf(anecdoteToUpdate)] = changedAnecdote
-        return newArr
       }
+      return newArr
     case 'NEW_ANECDOTE':
       const newList = [...state, action.data]
       return newList

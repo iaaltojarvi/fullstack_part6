@@ -4,20 +4,13 @@ import { connect } from 'react-redux'
 
 const Notification = (props) => {
   const notifications = props.notifications
-  console.log('props in notif', notifications)
 
-  if (notifications !== null && notifications.length) {
-    let notificationsList
-
-    notificationsList = notifications.map((notif) => {
-      return (
-        <div style={style} key={notif.id}>
-          {notif.notification}
-        </div>
-      )
-    })
-    console.log('notificationlist', notificationsList)
-    return notificationsList
+  if (notifications.length) {
+    return (
+      <div style={style}>
+        {notifications[notifications.length -1].notification}
+      </div>
+    )
   } else {
     return null
   }

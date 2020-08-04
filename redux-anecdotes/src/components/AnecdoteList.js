@@ -26,7 +26,7 @@ const AnecdoteList = (props) => {
 
     const onVote = (anecdote) => {
         dispatch(voteAction(anecdote.id, anecdote.content, anecdote.votes))
-        props.setNotification(`You voted '${anecdote.content}'`, 3500)
+        props.setNotification(`You voted '${anecdote.content}'`)
     }
 
     return (

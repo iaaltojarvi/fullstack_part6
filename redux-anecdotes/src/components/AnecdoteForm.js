@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { newAnecdote } from '../reducers/anecdoteReducer'
-import { setNotification, clearNotification } from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const NewAnecdote = (props) => {
     const [anecdote, setAnecdote] = useState('')
-    // const dispatch = useDispatch()
-    // const notifState = useSelector(state => state.notification)
-    // const notifState = props.notification
 
     const createNew = async (event) => {
         event.preventDefault()
         setAnecdote(event.target.value)
         props.newAnecdote(anecdote)
-        props.setNotification(`You added '${anecdote}'`, 3500)
+        props.setNotification(`You added '${anecdote}'`)
         setAnecdote('')
     }
 

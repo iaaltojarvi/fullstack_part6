@@ -1,7 +1,9 @@
 let id = Math.floor(Math.random() * 1000);
+let counter
 
 export const setNotification = (notification) => {
     return async dispatch => {
+        clearTimeout(counter)
         await dispatch({
             type: 'NOTIFICATION',
             data: {
@@ -9,8 +11,8 @@ export const setNotification = (notification) => {
                 id: id
             }
         })
-        setTimeout(() => {
-            await dispatch({
+        counter = setTimeout(() => {
+            dispatch({
                 type: 'CLEAR_NOTIFICATION',
                 data: {
                     notification: '',
@@ -26,7 +28,7 @@ const notificationReducer = (state = [], action) => {
         case 'NOTIFICATION':
             return [...state, action.data]
         case 'CLEAR_NOTIFICATION':
-            return state.filter(toast => toast.id !== action.data.id)
+            return state.filter(notif => notif.id !== action.data.id)
         default:
             return state
     }

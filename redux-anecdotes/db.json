@@ -2,27 +2,27 @@
   "anecdotes": [
     {
       "content": "If it hurts, do it more often",
-      "votes": 59,
+      "votes": 66,
       "id": "47145"
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
-      "votes": 9,
+      "votes": 12,
       "id": "21149"
     },
     {
       "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
-      "votes": 5,
+      "votes": 9,
       "id": "69581"
     },
     {
       "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      "votes": 8,
+      "votes": 10,
       "id": "36975"
     },
     {
       "content": "Premature optimization is the root of all evil.",
-      "votes": 32,
+      "votes": 37,
       "id": "25170"
     },
     {
@@ -32,18 +32,13 @@
     },
     {
       "content": "This is my new anecdote",
-      "votes": 11,
+      "votes": 15,
       "id": "8VKXiCc"
     },
     {
       "content": "Notification implements Connect",
-      "votes": 14,
+      "votes": 16,
       "id": "Wb9Wlth"
-    },
-    {
-      "content": "New ane",
-      "votes": 9,
-      "id": "WJSYSL-"
     }
   ]
 }
